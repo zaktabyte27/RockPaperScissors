@@ -2,15 +2,16 @@ let playerScore = 0
 let computerScore = 0
 
 function ComputerChoice(){
-    let x = Math.floor(Math.random(3))
+    let x = Math.floor(Math.random() * 3); //why cant javascript not be gay and generate random numbers like a normal language >>>>>:))))
+    console.log(x)
     if (x == 0){
-        return "ROCK"
+        return "ROCK";
     }
     else if (x==1){
-        return "PAPER"
+        return "PAPER";
     }
     else if (x==2){
-        return "SCISSORS"
+        return "SCISSORS";
     }
     
 }
