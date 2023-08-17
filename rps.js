@@ -16,45 +16,54 @@ function ComputerChoice(){
     
 }
 
-function game(){
-    let playerChoice = prompt("Choose either rock, paper or scissors")
+const computerOutputBar = document.querySelector("h3")
+let roundToPlay = parseInt(prompt("How many rounds would you like to play?"))
+
+function game(playerChoice){
     playerChoice = playerChoice.toUpperCase()
     let x = ComputerChoice()
     console.log(x,playerChoice)
-    if (playerChoice === x){
-        alert("Game was a draw")
+    if (roundToPlay != 0){
+        console.log(roundToPlay)
+        if (playerChoice === x){
+            computerOutputBar.textContent = ("Game was a draw")
+        }
+        else{
+            if (playerChoice == "ROCK"){
+                if (x== "SCISSORS"){
+                    computerOutputBar.textContent = ("Player won")
+                    playerScore++
+                }
+                else{
+                    computerOutputBar.textContent = ("Computer won")
+                    computerScore++
+                }
+            }
+            else if (playerChoice =="PAPER"){
+                if (x== "ROCK"){
+                    computerOutputBar.textContent = ("Player won")
+                    playerScore++
+                }
+                else{
+                    computerOutputBar.textContent = ("Computer won")
+                    computerScore++
+                }
+            }
+            else if (playerChoice =="SCISSORS"){
+                if (x== "PAPER"){
+                    computerOutputBar.textContent = ("Player won")
+                    playerScore++
+                }
+                else{
+                    computerOutputBar.textContent = ("Computer won")
+                    computerScore++
+                }
+            }
+        roundToPlay = roundToPlay-1
+        }
     }
-    else{
-        if (playerChoice == "ROCK"){
-            if (x== "SCISSORS"){
-                alert("Player won!")
-                playerScore++
-            }
-            else{
-                alert("Computer won")
-                computerScore++
-            }
-        }
-        else if (playerChoice =="PAPER"){
-            if (x== "ROCK"){
-                alert("Player won!")
-                playerScore++
-            }
-            else{
-                alert("Computer won")
-                computerScore++
-            }
-        }
-        else if (playerChoice =="SCISSORS"){
-            if (x== "PAPER"){
-                alert("Player won!")
-                playerScore++
-            }
-            else{
-                alert("Computer won")
-                computerScore++
-            }
-        }
+    else if (roundToPlay == 0){
+        result(playerScore,computerScore)
     }
 }
 
@@ -71,9 +80,10 @@ function result(pScore,cScore){
     }
 }
 
-game()
-game()
-game()
-game()
-game()
-result(playerScore,computerScore)
+const buttons = document.querySelectorAll("button")
+
+buttons.forEach((button) => button.addEventListener("click", (e) => game(e.target.id)))
+
+
+
+//result(playerScore,computerScore)
